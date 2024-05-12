@@ -32,7 +32,7 @@ class APIManager {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             
-            guard let error = error as? URLError, error.code == .notConnectedToInternet {
+            if let error = error as? URLError, error.code == .notConnectedToInternet {
                 // Handle no internet connection
                 onError(NetworkError.noInternet)
                 return
